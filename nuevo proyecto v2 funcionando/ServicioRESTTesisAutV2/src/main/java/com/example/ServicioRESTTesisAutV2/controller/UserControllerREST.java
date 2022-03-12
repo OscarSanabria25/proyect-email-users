@@ -1,7 +1,9 @@
 package com.example.ServicioRESTTesisAutV2.controller;
 
 import com.example.ServicioRESTTesisAutV2.Dto.UserDto;
+import com.example.ServicioRESTTesisAutV2.model.Role;
 import com.example.ServicioRESTTesisAutV2.model.User;
+import com.example.ServicioRESTTesisAutV2.service.RoleServiceImpl;
 import com.example.ServicioRESTTesisAutV2.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +14,8 @@ public class UserControllerREST {
 
     @Autowired
     private UserServiceImpl userService;
-    // @Autowired
-    //private RolServiceImpl rolService;
+     @Autowired
+    private RoleServiceImpl rolService;
 
     @GetMapping(value = "/users")
     public List<User> listUsersC(){
@@ -31,18 +33,18 @@ public class UserControllerREST {
     }
 
 
-    /*@PutMapping("/{rolId}/users/{userId}")
+   @PutMapping("/{rolId}/users/{userId}")
     User addRolToUser(
             @PathVariable Integer rolId,
             @PathVariable Integer userId
     ) {
         User user = userService.findUserByid(userId);
-        Role role = rolService.findRolByid(rolId);
+        Role role = rolService.findRoleByid(rolId);
 
         user.getRoles().add(role);
-        return userService.saveUser(user);
+        return userService.saveUserUpdate(user);
 
-    }*/
+    }
 
     @PutMapping(value = "/users/{id}")
     public User updateUserC(@RequestBody UserDto userDto ,@PathVariable("id") Integer id){

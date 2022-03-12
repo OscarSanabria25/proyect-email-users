@@ -1,11 +1,13 @@
 package com.example.ServicioRESTTesisAutV2.model;
 
+import com.example.ServicioRESTTesisAutV2.Dto.UserDto;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "users", uniqueConstraints ={@UniqueConstraint(columnNames = {"email"})})
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
